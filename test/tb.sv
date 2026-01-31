@@ -13,7 +13,7 @@ module tb;
     );
 
     initial begin
-        $dumpfile("../obj_dir_sv/wave.vcd");
+        $dumpfile("obj_dir_sv/wave.vcd");
         $dumpvars(0, tb);
     end
 
