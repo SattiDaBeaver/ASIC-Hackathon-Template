@@ -1,0 +1,29 @@
+name: Verilator CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-and-sim:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y verilator g++ make
+
+    # Option 1: Run pure SV testbench
+    - name: Run SV testbench
+      run: |
+        verilator -sv src/*.sv tb/tb_sv.sv --trace -Mdir obj_dir_sv
+        make -C obj_dir_sv -f Vtop_module.mk
+        ./obj_dir_sv/Vtop_module
+
+    # Option 2: Run C++ testbench
+    - name: Run C++ testbench
+      run: |
+        verilator src/*.sv --cc tb/sim_main.cpp --trace -Mdir obj_dir_cpp
+        make -C obj_dir_cpp -f Vtop_module.mk
+        ./obj_dir_cpp/Vtop_module
