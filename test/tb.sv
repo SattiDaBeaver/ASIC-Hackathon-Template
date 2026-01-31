@@ -14,7 +14,7 @@ module tb;
     logic uart_tx;
 
     // Instantiate DUT
-    simproc_system #(
+    top #(
         .CLK_BITS(CLK_BITS)
     ) DUT (
         .clk(clk),
