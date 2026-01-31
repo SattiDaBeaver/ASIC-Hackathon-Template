@@ -22,8 +22,9 @@ jobs:
           --trace \
           --timing \
           -Mdir obj_dir_sv
-        ./obj_dir_sv/Vtop
+        echo "------------------ Running testbench -------------------"
         ./obj_dir_sv/Vtop | tee sim.log
+        echo "------------------- Test complete ----------------------"
 
     - name: Upload simulation output
       uses: actions/upload-artifact@v4
