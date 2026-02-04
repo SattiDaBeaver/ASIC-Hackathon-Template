@@ -17,8 +17,8 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y verilator g++ make && sudo apt-get install gtkwave
-    
+      run: sudo apt-get update && sudo apt-get install -y verilator g++ make xvfb gtkwave
+
     - name: Run SV testbench
       run: |
         verilator -sv src/*.sv test/tb.sv \
@@ -26,9 +26,7 @@ jobs:
           --trace \
           --timing \
           -Mdir obj_dir_sv
-        echo "------------------ Running testbench -------------------"
         ./obj_dir_sv/Vtop | tee sim.log
-        echo "------------------- Test complete ----------------------"
 
     - name: Save waveform to repo
       run: |
@@ -37,7 +35,6 @@ jobs:
 
     - name: Generate waveform PNG (headless)
       run: |
-        sudo apt-get install -y xvfb gtkwave
         Xvfb :99 -screen 0 1920x1080x24 &
         export DISPLAY=:99
         gtkwave -a outputs/wave.vcd -o outputs/wave.png
