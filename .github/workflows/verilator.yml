@@ -58,6 +58,7 @@ jobs:
         echo "- Simulation completed" >> $GITHUB_STEP_SUMMARY
         echo "- Log file: \`sim.log\`" >> $GITHUB_STEP_SUMMARY
         echo "- Waveform file: \`outputs/wave.vcd\`" >> $GITHUB_STEP_SUMMARY
+        echo "- Live waveform (Surfer): https://raw.githubusercontent.com/<org>/<repo>/main/outputs/wave.vcd" >> $GITHUB_STEP_SUMMARY
 
   # Waveform Viewer
   # viewer:
