@@ -59,9 +59,10 @@ jobs:
         echo "- Simulation completed" >> $GITHUB_STEP_SUMMARY
         echo "- Log file: \`sim.log\`" >> $GITHUB_STEP_SUMMARY
         echo "- Waveform file: \`outputs/wave.vcd\`" >> $GITHUB_STEP_SUMMARY
+        echo "- Waveform preview image:" >> $GITHUB_STEP_SUMMARY
+        echo "![Waveform](outputs/wave.png)" >> $GITHUB_STEP_SUMMARY
         echo "- Live Waveform Viewer (Surfer): https://app.surfer-project.org" >> $GITHUB_STEP_SUMMARY
         echo "- Load waveform from this URL (in Surfer): https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/main/outputs/wave.vcd" >> $GITHUB_STEP_SUMMARY
-        
   # https://raw.githubusercontent.com/SattiDaBeaver/ASIC-Hackathon-Template/main/outputs/wave.vcd
         
 
