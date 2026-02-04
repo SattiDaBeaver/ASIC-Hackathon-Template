@@ -33,6 +33,14 @@ jobs:
         path: |
           sim.log
           obj_dir_sv/wave.vcd
+    
+    - name: Write job summary
+      run: |
+        echo "## 🧪 Verilator Simulation Results" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Simulation completed" >> $GITHUB_STEP_SUMMARY
+        echo "- 📄 Log file: \`sim.log\`" >> $GITHUB_STEP_SUMMARY
+        echo "- 📈 Waveform: \`wave.vcd\` (artifact)" >> $GITHUB_STEP_SUMMARY
 
 
     # # Option 2: Run C++ testbench
