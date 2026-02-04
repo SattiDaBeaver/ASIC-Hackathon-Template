@@ -36,11 +36,47 @@ jobs:
     
     - name: Write job summary
       run: |
-        echo "## 🧪 Verilator Simulation Results" >> $GITHUB_STEP_SUMMARY
+        echo "## Verilator Simulation Results" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "- ✅ Simulation completed" >> $GITHUB_STEP_SUMMARY
-        echo "- 📄 Log file: \`sim.log\`" >> $GITHUB_STEP_SUMMARY
-        echo "- 📈 Waveform: \`wave.vcd\` (artifact)" >> $GITHUB_STEP_SUMMARY
+        echo "- Simulation completed" >> $GITHUB_STEP_SUMMARY
+        echo "- Log file: \`sim.log\`" >> $GITHUB_STEP_SUMMARY
+        echo "- Waveform file: \`wave.vcd\` (artifact)" >> $GITHUB_STEP_SUMMARY
+
+    # Some stuff
+  viewer:
+    needs: build-and-sim
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: sim-output
+
+      - name: Prepare viewer
+        run: |
+          mkdir -p viewer
+          cp wave.vcd viewer/
+          cat > viewer/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <body style="margin:0">
+            <iframe
+              src="https://app.surfer-project.org/"
+              style="width:100vw;height:100vh;border:none">
+            </iframe>
+          </body>
+          </html>
+          EOF
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: viewer
+
+      - uses: actions/deploy-pages@v4
 
 
     # # Option 2: Run C++ testbench
