@@ -18,7 +18,12 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y verilator g++ make imagemagick vcd2svg
+      run: sudo apt-get update && sudo apt-get install -y verilator g++ make imagemagick 
+
+    - name: Install vcd2svg
+      run: |
+        curl -L https://github.com/cksystemsteaching/vcd2svg/releases/latest/download/vcd2svg-linux-x64.tar.gz \
+          | tar xz -C /usr/local/bin
 
     - name: Run SV testbench
       run: |
