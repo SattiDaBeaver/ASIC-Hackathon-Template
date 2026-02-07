@@ -5,7 +5,7 @@ on:
     branches: [ main, wave_test ]
     paths-ignore: # prevent infinite calls to github actions
       - outputs/wave.vcd  
-      - sim.log
+      - outputs/sim.log
   pull_request:
 
 permissions: # allow writes to repo
@@ -38,11 +38,12 @@ jobs:
         mv sim.log outputs/sim.log
 
     - name: Commit waveform
+      if: github.event_name == 'push'
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add outputs/wave.vcd
-        git commit -m "CI: update waveform (wave.vcd)" || echo "No changes to commit"
+        git add outputs/wave.vcd outputs/sim.log
+        git commit -m "CI: generated output files" || echo "No changes to commit"
         git push
 
     - name: Upload simulation output
@@ -50,8 +51,9 @@ jobs:
       with:
         name: sim-output
         path: |
-          sim.log
+          outputs/sim.log
           outputs/wave.vcd
+
 
     - name: Write job summary
       run: |
@@ -60,8 +62,8 @@ jobs:
         echo "- Simulation completed" >> $GITHUB_STEP_SUMMARY
         echo "- Log file: \`sim.log\`" >> $GITHUB_STEP_SUMMARY
         echo "- Waveform file: \`outputs/wave.vcd\`" >> $GITHUB_STEP_SUMMARY
-        echo "- Live Waveform Viewer (Surfer)\n: https://app.surfer-project.org" >> $GITHUB_STEP_SUMMARY
-        echo "- Load waveform from this URL (in Surfer)\n: https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/main/outputs/wave.vcd" >> $GITHUB_STEP_SUMMARY
+        echo "- Live Waveform Viewer (Surfer): https://app.surfer-project.org" >> $GITHUB_STEP_SUMMARY
+        echo "- Load waveform from this URL (in Surfer): https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/main/outputs/wave.vcd" >> $GITHUB_STEP_SUMMARY
         
   # https://raw.githubusercontent.com/SattiDaBeaver/ASIC-Hackathon-Template/main/outputs/wave.vcd
         
