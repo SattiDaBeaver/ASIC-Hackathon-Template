@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y verilator g++ make imagemagick 
 
-    - name: Install vcd2svg
+    - name: Install vcd2svg # not working rn
       run: |
         git clone https://github.com/phillbush/vcd2svg.git vcd2svg_tmp
         sudo cp vcd2svg_tmp/vcd2svg /usr/local/bin/
