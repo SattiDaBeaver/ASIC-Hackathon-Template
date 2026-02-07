@@ -5,7 +5,7 @@ on:
     branches: [ main, wave_test ]
     paths-ignore: # prevent infinite calls to github actions
       - outputs/wave.vcd  
-      - outputs/sim.log
+      - sim.log
   pull_request:
 
 permissions: # allow writes to repo
@@ -35,7 +35,7 @@ jobs:
       run: |
         mkdir -p outputs
         mv obj_dir_sv/wave.vcd outputs/wave.vcd
-        mv obj_dir_sv/sim.log outputs/sim.log
+        mv sim.log outputs/sim.log
 
     - name: Commit waveform
       run: |
