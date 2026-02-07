@@ -4,8 +4,7 @@ on:
   push:
     branches: [ main, wave_test ]
     paths-ignore: # prevent infinite calls to github actions
-      - outputs/wave.vcd  
-      - outputs/sim.log
+      - outputs/**
   pull_request:
 
 permissions: # allow writes to repo
