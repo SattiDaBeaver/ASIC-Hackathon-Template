@@ -44,7 +44,7 @@ jobs:
 
     - name: Generate waveform image
       run: |
-        vcd2svg $(vcd2svg < outputs/wave.vcd) < outputs/wave.vcd > outputs/wave.svg
+        vcd2svg $(vcd2svg outputs/wave.vcd) outputs/wave.vcd > outputs/wave.svg
         convert outputs/wave.svg outputs/wave.png
 
     - name: Commit waveform
