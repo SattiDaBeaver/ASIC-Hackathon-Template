@@ -22,8 +22,10 @@ jobs:
 
     - name: Install vcd2svg
       run: |
-        curl -L -o /usr/local/bin/vcd2svg https://github.com/cksystemsteaching/vcd2svg/releases/latest/download/vcd2svg-linux-x64
+        curl -L -o /usr/local/bin/vcd2svg \
+          https://github.com/cksystemsteaching/vcd2svg/releases/latest/download/vcd2svg-linux-x64
         chmod +x /usr/local/bin/vcd2svg
+
 
 
     - name: Run SV testbench
