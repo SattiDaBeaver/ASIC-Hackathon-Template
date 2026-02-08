@@ -14,6 +14,11 @@ $timescale 1ns $end
  $upscope $end
 $enddefinitions $end
 
+$dumpvars
+0#
+0$
+0%
+$end
 
 #0
 0#
