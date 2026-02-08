@@ -44,6 +44,7 @@ jobs:
         python3 -m pip install vcdvcd
         python3 -m pip install .
         python3 -m vcd2wavedrom.vcd2wavedrom -i ../outputs/wave.vcd -o ../outputs/wave.json
+        npx wavedrom-cli -i outputs/wave.json > outputs/wave.svg
 
     - name: Commit output folder
       if: github.event_name == 'push'
@@ -75,6 +76,7 @@ jobs:
         echo "- Simulation completed" >> $GITHUB_STEP_SUMMARY
         echo "- Log file: \`sim.log\`" >> $GITHUB_STEP_SUMMARY
         echo "- Waveform file: \`outputs/wave.vcd\`" >> $GITHUB_STEP_SUMMARY
+        echo "- WaveDrom SVG: ![Waveform](outputs/wave.svg)" >> $GITHUB_STEP_SUMMARY
         echo "- Live Waveform Viewer (Surfer): https://app.surfer-project.org" >> $GITHUB_STEP_SUMMARY
         echo "- Load waveform from this URL (in Surfer): https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/main/outputs/wave.vcd" >> $GITHUB_STEP_SUMMARY
         
