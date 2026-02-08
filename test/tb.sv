@@ -3,15 +3,15 @@
 module tb;
     logic a;
     logic b;
-    logic and;
-    logic xor;
+    logic and_o;
+    logic xor_o;
 
     // Instantiate the AND gate
     top uut (
         .a(a),
         .b(b),
-        .and(and),
-        .xor(xor)
+        .and_o(and_o),
+        .xor_o(xor_o)
     );
 
     initial begin
@@ -27,14 +27,14 @@ module tb;
         $display("----------------");
 
         // Test all combinations
-        a = 0; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
-        a = 0; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
-        a = 1; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
-        a = 1; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
-        a = 0; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
-        a = 0; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
-        a = 1; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
-        a = 1; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
+        a = 0; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, and_o, xor_o);
+        a = 0; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, and_o, xor_o);
+        a = 1; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, and_o, xor_o);
+        a = 1; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, and_o, xor_o);
+        a = 0; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, and_o, xor_o);
+        a = 0; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, and_o, xor_o);
+        a = 1; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, and_o, xor_o);
+        a = 1; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, and_o, xor_o);
 
         $display("Testbench finished!");
         $finish;

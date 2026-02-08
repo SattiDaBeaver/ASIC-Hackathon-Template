@@ -4,9 +4,9 @@ module top #(
 ) (
     input  logic a,
     input  logic b,
-    output logic and,
-    output logic xor
+    output logic and_o,
+    output logic xor_o
 );
-    assign and = a & b;
-    assign xor = a ^ b;
+    assign and_o = a & b;
+    assign xor_o = a ^ b;
 endmodule
