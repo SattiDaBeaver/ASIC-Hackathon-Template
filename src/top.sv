@@ -1,10 +1,12 @@
-`timescale 1ns/1ps
+`timescale 1ns/100ps
 
 module top #(
 ) (
     input  logic a,
     input  logic b,
-    output logic c
+    output logic and,
+    output logic xor
 );
-    assign c = a & b;
+    assign and = a & b;
+    assign xor = a ^ b;
 endmodule

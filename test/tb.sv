@@ -1,15 +1,17 @@
-`timescale 1ns/1ps
+`timescale 1ns/100ps
 
 module tb;
     logic a;
     logic b;
-    logic c;
+    logic and;
+    logic xor;
 
     // Instantiate the AND gate
     top uut (
         .a(a),
         .b(b),
-        .c(c)
+        .and(and),
+        .xor(xor)
     );
 
     initial begin
@@ -21,14 +23,14 @@ module tb;
     initial begin
         
         // Print header
-        $display("Time\t a b | c");
+        $display("Time\t a b | AND XOR");
         $display("----------------");
 
         // Test all combinations
-        a = 0; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, c);
-        a = 0; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, c);
-        a = 1; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, c);
-        a = 1; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, c);
+        a = 0; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
+        a = 0; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
+        a = 1; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
+        a = 1; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
 
         $display("Testbench finished!");
         $finish;
