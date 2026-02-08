@@ -63,12 +63,8 @@ jobs:
         path: |
           outputs/sim.log
           outputs/wave.vcd
-
-    - uses: actions/upload-artifact@v4
-      with:
-        name: wavedrom-json
-        path: outputs/wave.json
-
+          outputs/wave.svg
+          outputs/wave.json
 
     - name: Write job summary
       run: |
