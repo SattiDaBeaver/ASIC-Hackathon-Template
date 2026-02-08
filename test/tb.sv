@@ -31,6 +31,10 @@ module tb;
         a = 0; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
         a = 1; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
         a = 1; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
+        a = 0; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
+        a = 0; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
+        a = 1; b = 0; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
+        a = 1; b = 1; #10 $display("%0t\t %b %b | %b", $time, a, b, and, xor);
 
         $display("Testbench finished!");
         $finish;
